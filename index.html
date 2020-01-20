@@ -25,6 +25,7 @@
   <div id="content"></div>
   <script>
   var cfExt = window.contentfulExtension || window.contentfulWidget
+  const AlloyEditor = window.AlloyEditor
   var editorConfig = {
     toolbars: {
       add: {
@@ -94,7 +95,6 @@
       }
     }
   };
-  const AlloyEditor = window.AlloyEditor
 
   cfExt.init(function (ext) {
     var currentValue
