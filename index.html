@@ -25,7 +25,75 @@
   <div id="content"></div>
   <script>
   var cfExt = window.contentfulExtension || window.contentfulWidget
-
+  var editorConfig = {
+    toolbars: {
+      add: {
+        buttons: ['image', 'camera', 'table', 'hline', 'code', 'link']
+      },
+      styles: {
+        selections: [
+          {
+            name: 'text',
+            buttons: [
+              {
+                name: 'styles',
+                cfg: {
+                  styles: [
+                    {
+                      name: 'Head 1',
+                      style: { element: 'h1' }
+                    },
+                    {
+                      name: 'Head 2',
+                      style: { element: 'h2' }
+                    },
+                    {
+                      name: 'Big',
+                      style: { element: 'big' }
+                    },
+                    {
+                      name: 'Small',
+                      style: { element: 'small' }
+                    },
+                    {
+                      name: 'Code',
+                      style: { element: 'code' }
+                    },
+                    {
+                      name: 'Code',
+                      style: { element: 'code' }
+                    }
+                  ]
+                }
+              },
+              'bold', 'italic', 'underline', 'strike',
+              'removeFormat',
+              'superscript', 'subscript',
+              'ol', 'ul',
+              'paragraphLeft', 'paragraphCenter', 'paragraphRight', 'paragraphJustify',
+              'quote', 'code',
+            ],
+            test: AlloyEditor.SelectionTest.text
+          },
+          {
+            name: 'image',
+            buttons: ['imageLeft', 'imageCenter', 'imageRight'],
+            test: AlloyEditor.SelectionTest.image
+          },
+          {
+            name: 'table',
+            buttons: ['tableCell', 'tableColumn', 'tableRow', 'tableHeading', 'tableRemove'],
+            test: AlloyEditor.SelectionTest.table
+          },
+          {
+            name: 'link',
+            buttons: ['linkEdit'],
+            test: AlloyEditor.SelectionTest.link
+          }
+        ]
+      }
+    }
+  };
   const AlloyEditor = window.AlloyEditor
 
   cfExt.init(function (ext) {
@@ -33,7 +101,7 @@
 
     ext.window.startAutoResizer()
 
-    const editor = AlloyEditor.editable('content')._editor
+    const editor = AlloyEditor.editable('content', editorConfig)._editor
     editor.setData(ext.field.getValue())
 
     ext.field.onValueChanged(function(value) {
